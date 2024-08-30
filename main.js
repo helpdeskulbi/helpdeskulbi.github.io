@@ -8,8 +8,8 @@ if (getCookie("login")){
     setInner('tombollogin','Dashboard');
 }
 
-get("https://asia-southeast2-awangga.cloudfunctions.net/pamongdesa/data/phone/all",runafterGet);
-get("https://asia-southeast2-awangga.cloudfunctions.net/pamongdesa/data/lms/random/testi",runafterGetTesti);
+get("http://172.18.0.147:8080/data/phone/all",runafterGet);
+get("http://172.18.0.147:8080/data/lms/random/testi",runafterGetTesti);
 
 function runafterGet(result){
     // Mendapatkan elemen HTML dengan id 'phoneList'
