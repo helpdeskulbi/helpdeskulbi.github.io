@@ -8,8 +8,8 @@ if (getCookie("login")){
     setInner('tombollogin','Dashboard');
 }
 
-get("http://172.18.0.147:8080/data/phone/all",runafterGet);
-get("http://172.18.0.147:8080/data/lms/random/testi",runafterGetTesti);
+get("https://msg.ulbi.ac.id/data/phone/all",runafterGet);
+get("https://msg.ulbi.ac.id/data/lms/random/testi",runafterGetTesti);
 
 function runafterGet(result){
     // Mendapatkan elemen HTML dengan id 'phoneList'
