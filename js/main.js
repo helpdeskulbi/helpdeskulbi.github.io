@@ -15,10 +15,10 @@ $(function () {
         var scroll = $(window).scrollTop();
         if (scroll < 20) {
             $(".navbar-area").removeClass("sticky");
-            $(".navbar .navbar-brand img").attr("src", "/imgs/logo.png");
+            $(".navbar .navbar-brand img").attr("src", "/imgs/logoULBI.png");
         } else {
             $(".navbar-area").addClass("sticky");
-            $(".navbar .navbar-brand img").attr("src", "/imgs/logo.png");
+            $(".navbar .navbar-brand img").attr("src", "/imgs/logoULBI.png");
         }
     });
 
