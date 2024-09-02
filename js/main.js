@@ -32,12 +32,16 @@ $(function () {
         var scrollbarLocation = $(this).scrollTop();
 
         scrollLink.each(function () {
+            var targetElement = $(this.hash);
+            
+            // Check if the element with the hash exists
+            if (targetElement.length) {
+                var sectionOffset = targetElement.offset().top - 73;
 
-            var sectionOffset = $(this.hash).offset().top - 73;
-
-            if (sectionOffset <= scrollbarLocation) {
-                $(this).parent().addClass('active');
-                $(this).parent().siblings().removeClass('active');
+                if (sectionOffset <= scrollbarLocation) {
+                    $(this).parent().addClass('active');
+                    $(this).parent().siblings().removeClass('active');
+                }
             }
         });
     });
