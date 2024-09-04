@@ -148,3 +148,4 @@ async function runafterGetTesti(result){
 //     const testimonialContainer = document.querySelector('.testimonial-active');
 //     testimonialContainer.appendChild(colDiv);
 // }
+
