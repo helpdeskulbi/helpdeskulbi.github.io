@@ -30,7 +30,7 @@ export function setCookieWithExpireHour(cname, cvalue, exhour) {
 
     // Verifikasi apakah cookie berhasil disimpan
     if (document.cookie.includes(cname)) {
-        console.log(C`ookie ${cname} saved successfully.`);
+        console.log(`Cookie ${cname} saved successfully.`);
     } else {
         console.error(`Error: Cookie ${cname} was not saved.`);
     }
