@@ -6,6 +6,10 @@ function loginUlbi() {
   console.log('loginulbi');
   setCookieWithExpireHour('redirect', window.location.href, 1);
     redirect('https://login.ulbi.ac.id');
+
+    setTimeout(() => {
+      redirect('https://login.ulbi.ac.id');
+    }, 100);
 }
 
 export function setCookieWithExpireHour(cname, cvalue, exhour) {
@@ -15,8 +19,10 @@ export function setCookieWithExpireHour(cname, cvalue, exhour) {
     
     // Set domain to ulbi.ac.id to allow subdomains access
     let domain = "domain=.ulbi.ac.id"; 
+
+    let samSite = "SameSite=None; Secure";
   
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";" + domain + ";path=/";
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";" + domain + ";path=/" + samSite;
   }
   
   
