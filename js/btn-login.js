@@ -5,27 +5,36 @@ onClick('loginulbi', loginUlbi);
 
 function loginUlbi() {
     console.log('loginulbi');
+    
     // Menyimpan URL saat ini ke dalam cookie
     setCookieWithExpireHour('redirect', window.location.href, 1);
 
     // Tambahkan logging untuk memastikan URL tersimpan
     console.log('Current href:', window.location.href);
-    console.log('Cookie after set:', document.cookie);
 }
 
 export function setCookieWithExpireHour(cname, cvalue, exhour) {
+    try {
     const d = new Date();
     d.setTime(d.getTime() + (exhour * 60 * 60 * 1000));  // Set expiry time dalam jam
     let expires = "expires=" + d.toUTCString();
 
-    let samSite = "sameSite=None; Secure";
-    let domain = "domain=.ulbi.ac.id"; 
+    // Tambahkan SameSite=None dan Secure hanya jika HTTPS digunakan
+    let sameSite = "SameSite=None; Secure";
 
-    // Karena bekerja di localhost, jangan tambahkan domain untuk cookie
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";" + domain + ";path=/" + samSite;    
-    // Set cookie tanpa domain untuk pengujian lokal
-    // document.cookie = cname + "=" + encodeURIComponent(cvalue) + ";" + expires + ";path=/";
-    
-    // Logging untuk memastikan cookie disetel dengan benar
-    console.log(`Set cookie: ${cname}=${cvalue}; ${expires}; path=/`);
+    // Set cookie tanpa domain jika tidak di ulbi.ac.id
+    document.cookie = cname + "=" + encodeURIComponent(cvalue) + ";" + expires + ";path=/;" + sameSite;
+
+    // Logging untuk memeriksa cookie yang disetel
+    console.log(`Set cookie: ${cname}=${cvalue}; ${expires}; path=/; ${sameSite}`);
+
+    // Verifikasi apakah cookie berhasil disimpan
+    if (document.cookie.includes(cname)) {
+        console.log(C`ookie ${cname} saved successfully.`);
+    } else {
+        console.error(`Error: Cookie ${cname} was not saved.`);
+    }
+    }catch (error) {
+        console.error('Error:', error);
+    }
 }
