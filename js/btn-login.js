@@ -16,7 +16,7 @@ function loginUlbi() {
     redirect('https://login.ulbi.ac.id');
 }
 
-export function setCookieWithExpireHour(cname, cvalue, exhour) {
+function setCookieWithExpireHour(cname, cvalue, exhour) {
     const d = new Date();
     d.setTime(d.getTime() + (exhour * 60 * 60 * 1000));
     let expires = "expires=" + d.toUTCString();
