@@ -27,7 +27,7 @@ export function setCookieWithExpireHour(cname, cvalue, exhour) {
     document.cookie = cname + "=" + cvalue + ";" + expires + ";" + domain + ";path=/";
 
     // Logging untuk memeriksa cookie yang disetel
-    console.log(`Set cookie: ${cname}=${cvalue}; ${expires}; path=/; ${sameSite}`);
+    console.log(`Set cookie: ${cname}=${cvalue}; ${expires}; path=/; ${domain}`);
 
     // Verifikasi apakah cookie berhasil disimpan
     if (document.cookie.includes(cname)) {
