@@ -18,9 +18,11 @@ export function setCookieWithExpireHour(cname, cvalue, exhour) {
     d.setTime(d.getTime() + (exhour * 60 * 60 * 1000));  // Set expiry time dalam jam
     let expires = "expires=" + d.toUTCString();
 
+    let samSite = "sameSite=None; Secure";
+    let domain = "domain=.ulbi.ac.id"; 
+
     // Karena bekerja di localhost, jangan tambahkan domain untuk cookie
-    document.cookie = cname + "=" + encodeURIComponent(cvalue) + ";" + expires + ";domain=.ulbi.ac.id;path=/";  // Nonaktifkan jika Anda di localhost
-    
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";" + domain + ";path=/" + samSite;    
     // Set cookie tanpa domain untuk pengujian lokal
     // document.cookie = cname + "=" + encodeURIComponent(cvalue) + ";" + expires + ";path=/";
     
