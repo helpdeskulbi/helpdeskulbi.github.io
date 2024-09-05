@@ -14,28 +14,12 @@ function loginUlbi() {
 }
 
 export function setCookieWithExpireHour(cname, cvalue, exhour) {
-    try {
     const d = new Date();
-    d.setTime(d.getTime() + (exhour * 60 * 60 * 1000));  // Set expiry time dalam jam
+    d.setTime(d.getTime() + (exhour * 60 * 60 * 1000));
     let expires = "expires=" + d.toUTCString();
-
-    // Tambahkan SameSite=None dan Secure hanya jika HTTPS digunakan
-    // let sameSite = "SameSite=None; Secure";
+    
+    // Set domain to ulbi.ac.id to allow subdomains access
     let domain = "domain=.ulbi.ac.id"; 
-
-    // Set cookie tanpa domain jika tidak di ulbi.ac.id
+  
     document.cookie = cname + "=" + cvalue + ";" + expires + ";" + domain + ";path=/";
-
-    // Logging untuk memeriksa cookie yang disetel
-    console.log(`Set cookie: ${cname}=${cvalue}; ${expires}; path=/; ${domain}`);
-
-    // Verifikasi apakah cookie berhasil disimpan
-    if (document.cookie.includes(cname)) {
-        console.log(`Cookie ${cname} saved successfully.`);
-    } else {
-        console.error(`Error: Cookie ${cname} was not saved.`);
-    }
-    }catch (error) {
-        console.error('Error:', error);
-    }
 }
