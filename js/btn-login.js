@@ -8,7 +8,7 @@ function loginUlbi() {
     
     // Menyimpan URL saat ini ke dalam cookie
     setCookieWithExpireHour('redirect', window.location.href, 1);
-    // redirect('https://login.ulbi.ac.id')
+    redirect('https://login.ulbi.ac.id')
     // Tambahkan logging untuk memastikan URL tersimpan
     console.log('Current href:', window.location.href);
 }
