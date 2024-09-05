@@ -3,12 +3,14 @@ import {setInner} from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.4/element.js
 import {getCookie} from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.4/cookie.js";
 
 let token = getCookie("login");
-if (token === "") {
-  window.location.replace("/");
-} else {
-    window.location.replace("https://wa.me/628999808001?text=hai")
-}
 
+if (token === "") {
+    // No token, stay on the current page (index page)
+    console.log("No token found. Staying on index page.");
+} else {
+    // Token exists, redirect to WhatsApp URL
+    window.location.replace("https://wa.me/628999808001?text=hai");
+}
 // if (getCookie("login")){
 //     document.getElementById('tombollogin').href = '/auth';
 //     setInner('tombollogin','Dashboard');
