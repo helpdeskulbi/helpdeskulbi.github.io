@@ -8,7 +8,7 @@ function loginUlbi() {
     
     // Menyimpan URL saat ini ke dalam cookie
     setCookieWithExpireHour('redirect', window.location.href, 1);
-    redirect('https://login.ulbi.ac.id')
+    // redirect('https://login.ulbi.ac.id')
     // Tambahkan logging untuk memastikan URL tersimpan
     console.log('Current href:', window.location.href);
 }
@@ -20,10 +20,11 @@ export function setCookieWithExpireHour(cname, cvalue, exhour) {
     let expires = "expires=" + d.toUTCString();
 
     // Tambahkan SameSite=None dan Secure hanya jika HTTPS digunakan
-    let sameSite = "SameSite=None; Secure";
+    // let sameSite = "SameSite=None; Secure";
+    let domain = "domain=.ulbi.ac.id"; 
 
     // Set cookie tanpa domain jika tidak di ulbi.ac.id
-    document.cookie = cname + "=" + encodeURIComponent(cvalue) + ";" + expires + ";path=/;" + sameSite;
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";" + domain + ";path=/";
 
     // Logging untuk memeriksa cookie yang disetel
     console.log(`Set cookie: ${cname}=${cvalue}; ${expires}; path=/; ${sameSite}`);
