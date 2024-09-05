@@ -3,10 +3,10 @@ import {setInner} from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.4/element.js
 import {getCookie} from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.4/cookie.js";
 
 
-if (getCookie("login")){
-    document.getElementById('tombollogin').href = '/auth';
-    setInner('tombollogin','Dashboard');
-}
+// if (getCookie("login")){
+//     document.getElementById('tombollogin').href = '/auth';
+//     setInner('tombollogin','Dashboard');
+// }
 
 get("https://msg.ulbi.ac.id/data/phone/all",runafterGet);
 // get("https://msg.ulbi.ac.id/data/lms/random/testi",runafterGetTesti);
