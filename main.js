@@ -2,6 +2,12 @@ import {get} from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.4/api.js";
 import {setInner} from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.4/element.js";
 import {getCookie} from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.4/cookie.js";
 
+let token = getCookie("login");
+if (token === "") {
+  window.location.replace("/");
+} else {
+    window.location.replace("https://wa.me/628999808001?text=hai")
+}
 
 // if (getCookie("login")){
 //     document.getElementById('tombollogin').href = '/auth';
