@@ -382,9 +382,6 @@
                                 <strong>5. Bantuan Admin</strong><br />
                                 Pengguna Dapat Menghubungi langsung admin pamong desa Jika Ada Pertanyaan Lanjutan di
                                 menu kontak admin<br />
-                                <strong>6. Close Tiket dan Feedback</strong><br />
-                                Tiket Ditutup oleh Admin atau user dengan menekan angka 0, kemudian user memberikan
-                                feedback<br />
                             </p>
                         </div> <!-- counter content -->
                         <!-- row -->
@@ -605,11 +602,11 @@
 
     <!--====== test debug ======-->
     <script>
-        export function onClick(id, actionfunctionname) {
+        function onClick(id, actionfunctionname) {
             document.getElementById(id).onclick = actionfunctionname;
         }
 
-        export function setCookieWithExpireHour(cname, cvalue, exhour) {
+        function setCookieWithExpireHour(cname, cvalue, exhour) {
             const d = new Date();
             d.setTime(d.getTime() + (exhour * 60 * 60 * 1000));
             let expires = "expires=" + d.toUTCString();
