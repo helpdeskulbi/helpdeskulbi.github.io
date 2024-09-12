@@ -142,7 +142,7 @@ p {
   -ms-user-select: none;
   user-select: none;
   padding: 0 25px;
-  margin: 4px 0;
+  margin: 0;
   font-size: 16px;
   line-height: 48px;
   border-radius: 8px;
