@@ -12,6 +12,7 @@ function loginUlbi() {
     console.log('loginulbi');
     setCookieWithExpireHour('redirect', window.location.href, 1);
     console.log('url yang disimpan:', window.location.href);
+    redirect('https://login.ulbi.ac.id')
 }
 
 // Menggunakan onClick dari library yang diimpor
