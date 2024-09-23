@@ -11,10 +11,10 @@ if (token === "") {
     // Token exists, redirect to WhatsApp URL
     window.location.replace("https://wa.me/628999808001?text=hai");
 }
-// if (getCookie("login")){
-//     document.getElementById('tombollogin').href = '/auth';
-//     setInner('tombollogin','Dashboard');
-// }
+if (getCookie("login")){
+    document.getElementById('tombollogin').href = '/auth';
+    setInner('tombollogin','Dashboard');
+}
 
 get("https://msg.ulbi.ac.id/data/phone/all",runafterGet);
 // get("https://msg.ulbi.ac.id/data/lms/random/testi",runafterGetTesti);
