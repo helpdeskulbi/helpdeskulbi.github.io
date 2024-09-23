@@ -12,8 +12,8 @@ if (token === "") {
     window.location.replace("https://helpdesk.ulbi.ac.id/pdboard_helpdesk/");
 }
 if (getCookie("login")){
-    document.getElementById('tombollogin').href = '/auth';
-    setInner('tombollogin','Dashboard');
+    document.getElementById('loginulbi').href = '/auth';
+    setInner('loginulbi','Dashboard');
 }
 
 get("https://msg.ulbi.ac.id/data/phone/all",runafterGet);
