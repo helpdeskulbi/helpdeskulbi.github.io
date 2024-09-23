@@ -560,6 +560,7 @@
     </div>
     <!--====== PART ENDS ======-->
     <script src="main.js" type="module"></script>
+    <script src="js/btn-login.js" type="module"></script>
     <!--====== Jquery js ======-->
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery-2.2.4.min.js"></script>
@@ -602,31 +603,6 @@
     <!-- <script src="js/btn-login.js" type="module"></script> -->
 
     <!--====== test debug ======-->
-    <script>
-        function onClick(id, actionfunctionname) {
-            document.getElementById(id).onclick = actionfunctionname;
-        }
-
-        function setCookieWithExpireHour(cname, cvalue, exhour) {
-            const d = new Date();
-            d.setTime(d.getTime() + (exhour * 60 * 60 * 1000));
-            let expires = "expires=" + d.toUTCString();
-
-            // Set domain to ulbi.ac.id to allow subdomains access
-            let domain = "domain=.ulbi.ac.id";
-
-            document.cookie = cname + "=" + cvalue + ";" + expires + ";" + domain + ";path=/";
-        }
-
-
-        function loginUlbi() {
-            console.log('loginulbi');
-            setCookieWithExpireHour('redirect', window.location.href, 1);
-            console.log('url yang disimpam:', window.location.href);
-        }
-
-        onClick('loginulbi', loginUlbi);
-    </script>
 </body>
 
 </html>
