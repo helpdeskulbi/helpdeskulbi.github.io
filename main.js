@@ -9,7 +9,7 @@ if (token === "") {
     console.log("No token found. Staying on index page.");
 } else {
     // Token exists, redirect to WhatsApp URL
-    window.location.replace("https://wa.me/628999808001?text=hai");
+    window.location.replace("https://helpdesk.ulbi.ac.id/pdboard_helpdesk/");
 }
 if (getCookie("login")){
     document.getElementById('tombollogin').href = '/auth';

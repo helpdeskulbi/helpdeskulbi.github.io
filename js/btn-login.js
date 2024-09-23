@@ -5,11 +5,7 @@ function setCookieWithExpireHour(cname, cvalue, exhour) {
     const d = new Date();
     d.setTime(d.getTime() + (exhour * 60 * 60 * 1000));
     let expires = "expires=" + d.toUTCString();
-
-    // Set domain to ulbi.ac.id to allow subdomains access
-    let domain = "domain=.ulbi.ac.id";
-
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";" + domain + ";path=/";
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
 function loginUlbi() {
@@ -18,5 +14,5 @@ function loginUlbi() {
     console.log('url yang disimpan:', window.location.href);
 }
 
-// // Menggunakan onClick dari library yang diimpor
-// onClick('loginulbi', loginUlbi);
+// Menggunakan onClick dari library yang diimpor
+onClick('loginulbi', loginUlbi);
