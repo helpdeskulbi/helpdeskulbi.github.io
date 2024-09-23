@@ -5,14 +5,17 @@ function setCookieWithExpireHour(cname, cvalue, exhour) {
     const d = new Date();
     d.setTime(d.getTime() + (exhour * 60 * 60 * 1000));
     let expires = "expires=" + d.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+
+    // Set domain to ulbi.ac.id to allow subdomains access
+    let domain = "domain=.ulbi.ac.id";
+
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";" + domain + ";path=/";
 }
 
 function loginUlbi() {
     console.log('loginulbi');
     setCookieWithExpireHour('redirect', window.location.href, 1);
     console.log('url yang disimpan:', window.location.href);
-    redirect('https://login.ulbi.ac.id')
 }
 
 // Menggunakan onClick dari library yang diimpor
