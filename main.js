@@ -1,58 +1,20 @@
 import {get} from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.4/api.js";
 import {setInner} from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.4/element.js";
 import {getCookie} from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.4/cookie.js";
-import { onClick } from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.4/element.js";
-import { redirect } from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.4/url.js";
 
-function getSubdomain() {
-    // Mendapatkan subdomain dari URL
-    const host = window.location.hostname;
-    const parts = host.split('.');
-    if (parts.length > 2) {
-        return parts[0]; // Mengembalikan subdomain
-    }
-    return null;
-}
-
-function setCookieWithExpireHour(cname, cvalue, exhour) {
-    const d = new Date();
-    d.setTime(d.getTime() + (exhour * 60 * 60 * 1000));
-    let expires = "expires=" + d.toUTCString();
-    let domain = "domain=.ulbi.ac.id"; // Membuat cookie tersedia di semua subdomain
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";" + domain + ";path=/";
-}
-
-function loginUlbi() {
-    console.log('loginulbi');
-    setCookieWithExpireHour('redirect', window.location.href, 1);
-    console.log('URL yang disimpan:', window.location.href);
-}
-
-// Logika untuk melakukan redirect sesuai subdomain
 let token = getCookie("login");
 
 if (token === "") {
+    // No token, stay on the current page (index page)
     console.log("No token found. Staying on index page.");
 } else {
-    const subdomain = getSubdomain();
-    if (subdomain) {
-        // Redirect ke URL sesuai subdomain
-        const redirectUrl = `https://${subdomain}.ulbi.ac.id/pdboard_helpdesk/`;
-        window.location.replace(redirectUrl);
-    } else {
-        // Jika tidak ada subdomain, redirect ke URL default
-        window.location.replace("https://helpdesk.ulbi.ac.id/pdboard_helpdesk/");
-    }
+    // Token exists, redirect to WhatsApp URL
+    window.location.replace("https://helpdesk.ulbi.ac.id/pdboard_helpdesk/");
 }
-
-if (getCookie("login")) {
+if (getCookie("login")){
     document.getElementById('loginulbi').href = '/auth';
     setInner('loginulbi','Dashboard');
 }
-
-// Menggunakan onClick dari library yang diimpor
-onClick('loginulbi', loginUlbi);
-
 
 get("https://msg.ulbi.ac.id/data/phone/all",runafterGet);
 // get("https://msg.ulbi.ac.id/data/lms/random/testi",runafterGetTesti);
