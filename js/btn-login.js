@@ -18,5 +18,5 @@ function loginUlbi() {
     console.log('url yang disimpan:', window.location.href);
 }
 
-// Menggunakan onClick dari library yang diimpor
-onClick('loginulbi', loginUlbi);
+// // Menggunakan onClick dari library yang diimpor
+// onClick('loginulbi', loginUlbi);
