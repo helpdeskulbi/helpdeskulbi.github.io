@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile Card</title>
+    <link rel="stylesheet" href="./css/info.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="profile-card" id="profileCard">
+        <button class="close-btn" id="closeBtn">&times;</button>
+
+        <div class="avatar">
+          <img id="profileImage" src="./imgs/user.png" alt="Profile Picture" />
+        </div>
+
+        <h2 id="profileName">Loading...</h2>
+        <p class="info" id="profileMicrosoft">Microsoft: —</p>
+        <p class="info" id="Password">Password: —</p>
+
+        <div class="button-group">
+          <a
+            href="https://www.office.com/"
+            target="_blank"
+            class="btn btn-microsoft"
+            >Microsoft</a
+          >
+          <a
+            href="https://wa.me/6282184952582?text=halo%20ka,%20apakah%20bisa%20saya%20minta%20bantuannya?"
+            target="_blank"
+            class="btn btn-whatsapp"
+            >Buka Chat</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const userId = localStorage.getItem("iduser");
+      const token = localStorage.getItem("token");
+
+      if (!token || !userId) {
+        window.location.href = "https://helpdesk.ulbi.ac.id/";
+      }
+
+      const nameEl = document.getElementById("profileName");
+      const microsoftEl = document.getElementById("profileMicrosoft");
+      const passwordEl = document.getElementById("Password");
+      const cardEl = document.getElementById("profileCard");
+
+      // Tampilkan loading
+      nameEl.textContent = "Memuat data...";
+
+      fetch(
+        `https://ruangsehat-be.ulbi.ac.id/api/users/microsoftaccount?id=${userId}`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      )
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Gagal mengambil data");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          nameEl.textContent = data.data.nama || "Nama tidak tersedia";
+          microsoftEl.innerHTML = `Microsoft: <strong>${
+            data.data.microsoft_account || "Belum terhubung"
+          }</strong>`;
+          passwordEl.innerHTML = `Password: <strong>${
+            data.data.password || "—"
+          }</strong>`;
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+          nameEl.textContent = "Gagal memuat profil";
+          passwordEl.textContent =
+            "Akun kamu belum terdaftar, silahkan hubungi admin.";
+          microsoftEl.textContent = "";
+        });
+
+      // Opsional: tutup card saat klik X
+      document.getElementById("closeBtn").addEventListener("click", () => {
+        cardEl.style.display = "none";
+      });
+    </script>
+  </body>
+</html>

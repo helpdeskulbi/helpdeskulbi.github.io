@@ -1,34 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="css/login.css">
-        <title>Login</title>
-    </head>
-    <body>
-        <div class="background-image" ></div>
-        <div class="form-container">
-            <div class="form-header">
-                 <img src=imgs/logoULBI.png alt="Logo" style="height:60px;">
-                <h1>Login</h1>
-                <p>
-                    Apakah kamu sudah memiliki akun?
-                    <a href="/login.html">Masuk</a>
-                </p>
-            </div>
-            <form>
-                <div class="form-group">
-                    <label for="username">NPM</label>
-                    <input type="text" id="username" placeholder="">
-                </div>
 
-                <button type="submit" class="submit-btn">Register Akun</button>
-                <div class="login-link">
-                    Apakah kamu sudah memiliki akun?
-                    <a href="/login.html">Masuk</a>
-                </div>
-            </form>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/login.css" />
+    <title>Register</title>
+    <style>
+        /* === CUSTOM ALERT STYLE === */
+        
+        .custom-alert-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding-top: 20vh;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        
+        .custom-alert-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .custom-alert-box {
+            background: white;
+            padding: 24px 32px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 90%;
+            transform: translateY(-20px);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .custom-alert-overlay.show .custom-alert-box {
+            transform: translateY(0);
+        }
+        
+        .custom-alert-box h3 {
+            margin: 0 0 12px;
+            font-size: 20px;
+            color: #2d3748;
+        }
+        
+        .custom-alert-box p {
+            margin: 0;
+            font-size: 16px;
+            color: #4a5568;
+            line-height: 1.5;
+        }
+        
+        .custom-alert-box.success {
+            border-left: 4px solid #48bb78;
+        }
+        
+        .custom-alert-box.error {
+            border-left: 4px solid #e53e3e;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background-image"></div>
+    <div class="form-container">
+        <div class="form-header">
+            <img src="imgs/logoULBI.png" alt="Logo" style="height: 60px" />
+            <h1>Register</h1>
+            <p>
+                Apakah kamu sudah memiliki akun?
+                <a href="/login.html">Masuk</a>
+            </p>
         </div>
-    </body>
+        <form id="registerform" class="registerform">
+            <div class="form-group">
+                <label for="npm">NPM</label>
+                <input type="text" id="npm" placeholder="Masukkan NPM" required />
+            </div>
+            <button type="submit" class="submit-btn">Register Akun</button>
+            <div class="login-link">
+                Apakah kamu sudah memiliki akun?
+                <a href="/login.html">Masuk</a>
+            </div>
+        </form>
+    </div>
+
+    <!-- Custom Alert Modal -->
+    <div class="custom-alert-overlay" id="customAlert">
+        <div class="custom-alert-box" id="alertContent">
+            <!-- Isi diisi via JS -->
+        </div>
+    </div>
+
+    <script>
+        function showCustomAlert(message, type = "success", autoClose = true) {
+            const overlay = document.getElementById("customAlert");
+            const content = document.getElementById("alertContent");
+
+            // Set warna & konten
+            content.className = "custom-alert-box " + type;
+            content.innerHTML = `<h3>${
+          type === "success" ? "Berhasil!" : "Gagal!"
+        }</h3><p>${message}</p>`;
+
+            // Tampilkan
+            overlay.classList.add("show");
+
+            if (autoClose) {
+                setTimeout(() => {
+                    overlay.classList.remove("show");
+                }, 3000); // Tutup otomatis setelah 3 detik
+            }
+
+            // Tutup saat diklik overlay
+            overlay.onclick = () => {
+                overlay.classList.remove("show");
+            };
+        }
+
+        document
+            .getElementById("registerform")
+            .addEventListener("submit", async function(event) {
+                event.preventDefault();
+
+                const npm = document.getElementById("npm").value.trim();
+
+                if (!npm) {
+                    showCustomAlert("Harap isi NPM terlebih dahulu.", "error");
+                    return;
+                }
+
+                try {
+                    const response = await fetch(
+                        `https://ruangsehat-be.ulbi.ac.id/api/public/mhs/sinkron?nim=${encodeURIComponent(
+                npm
+              )}`, {
+                            method: "POST",
+                        }
+                    );
+
+                    const result = await response.json();
+
+                    if (response.ok) {
+                        showCustomAlert("Akun berhasil didaftarkan!");
+                        setTimeout(() => {
+                            window.location.href = "./dashboard.html";
+                        }, 1500);
+                    } else {
+                        showCustomAlert(
+                            result.status || "NPM tidak ditemukan atau gagal sinkronisasi.",
+                            "error"
+                        );
+                    }
+                } catch (error) {
+                    console.error("Error:", error);
+                    showCustomAlert(
+                        "Gagal terhubung ke server. Periksa koneksi internet Anda.",
+                        "error"
+                    );
+                }
+            });
+    </script>
+</body>
+
 </html>
