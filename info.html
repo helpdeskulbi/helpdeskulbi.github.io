@@ -19,20 +19,73 @@
         <p class="info" id="profileMicrosoft">Akun Microsoft: —</p>
         <p class="info" id="Password">Password: —</p>
 
-        <div class="button-group">
+        <style>
+          .custom-button-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 24px;
+            width: 100%;
+          }
+          .custom-button-layout .btn {
+            margin-top: 0 !important; /* override the old margin */
+          }
+          .custom-button-layout .btn-full {
+            grid-column: 1 / -1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+          }
+          .custom-button-layout .btn-half {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 16px 10px;
+          }
+          @media (min-width: 480px) {
+            .custom-button-layout .btn {
+              flex: unset;
+            }
+          }
+        </style>
+        <div class="custom-button-layout">
           <a
             href="https://www.office.com/"
             target="_blank"
-            class="btn btn-microsoft"
-            >Login Microsoft</a
-          >
-        <a
+            class="btn btn-microsoft btn-full"
+            >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path d="M22 2L11.2 3.6V11.6H22V2ZM10 3.8L2 5V11.6H10V3.8ZM2 12.4V19L10 20.2V12.4H2ZM11.2 12.4V20.4L22 22V12.4H11.2Z"/>
+            </svg>
+            Login Microsoft
+          </a>
+          <a
             href="https://drive.google.com/file/d/19aZVvv1zt-TgmUgYpJEvu1knn6xoIwW3/view?usp=sharing"
             target="_blank"
-            class="btn btn-whatsapp"
-            >Buka Panduan</a
-          >
-
+            class="btn btn-whatsapp btn-half"
+            >
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/>
+            </svg>
+            Panduan
+          </a>
+          <button 
+            id="btnLogout" 
+            class="btn btn-half" 
+            style="background-color: #ef4444; color: white; border: none; cursor: pointer; border-radius: 10px; font-weight: 600; font-family: inherit; font-size: 16px; transition: all 0.25s ease;" 
+            onmouseover="this.style.backgroundColor='#dc2626'; this.style.transform='translateY(-2px)'" 
+            onmouseout="this.style.backgroundColor='#ef4444'; this.style.transform='translateY(0)'"
+            >
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+              <polyline points="16 17 21 12 16 7"/>
+              <line x1="21" y1="12" x2="9" y2="12"/>
+            </svg>
+            Keluar
+          </button>
         </div>
       </div>
     </div>
@@ -89,6 +142,13 @@
       // Opsional: tutup card saat klik X
       document.getElementById("closeBtn").addEventListener("click", () => {
         cardEl.style.display = "none";
+      });
+
+      // Logika Logout
+      document.getElementById("btnLogout").addEventListener("click", () => {
+        localStorage.removeItem("token");
+        localStorage.removeItem("iduser");
+        window.location.replace("https://helpdesk.ulbi.ac.id/");
       });
     </script>
   </body>
