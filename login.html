@@ -193,6 +193,13 @@
     <div class="custom-alert-box" id="alertContent"></div>
   </div>
   <script>
+    const existingToken = localStorage.getItem("token");
+    const existingIduser = localStorage.getItem("iduser");
+
+    if (existingToken && existingIduser) {
+      window.location.href = "info.html";
+    }
+
     function HandleBack() {
       window.location.replace("https://helpdesk.ulbi.ac.id/");
     }

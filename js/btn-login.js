@@ -1,5 +1,4 @@
 import { onClick } from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.4/element.js";
-import { redirect } from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.4/url.js";
 
 function setCookieWithExpireHour(cname, cvalue, exhour) {
     const d = new Date();
@@ -18,13 +17,13 @@ function loginUlbi() {
     const iduser = localStorage.getItem("iduser");
 
     if (token && iduser) {
-        redirect('../info.html');
+        window.location.href = "info.html";
         return;
     }
 
     setCookieWithExpireHour('redirect', window.location.href, 1);
     console.log('url yang disimpan:', window.location.href);
-    redirect('../login.html');
+    window.location.href = "login.html";
 }
 
 // Menggunakan onClick dari library yang diimpor
