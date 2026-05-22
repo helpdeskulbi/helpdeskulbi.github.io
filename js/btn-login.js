@@ -14,6 +14,14 @@ function setCookieWithExpireHour(cname, cvalue, exhour) {
 
 function loginUlbi() {
     console.log('loginulbi');
+    const token = localStorage.getItem("token");
+    const iduser = localStorage.getItem("iduser");
+
+    if (token && iduser) {
+        redirect('../info.html');
+        return;
+    }
+
     setCookieWithExpireHour('redirect', window.location.href, 1);
     console.log('url yang disimpan:', window.location.href);
     redirect('../login.html');
