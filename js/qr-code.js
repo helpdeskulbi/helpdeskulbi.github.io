@@ -43,7 +43,7 @@ function formatTanggalIndonesia(dateValue) {
     "September",
     "Oktober",
     "November",
-    "Desember"
+    "Desember",
   ];
 
   let date;
@@ -104,11 +104,15 @@ function loadSignatureData() {
   setTextById("tanggal", formatTanggalIndonesia(data.t));
   setTextById("unitPengirim", data.u);
   setTextById("jenisSurat", data.j);
+  const kepadaElement = document.getElementById("kepada");
   setTextById("jenisPenerima", data.r);
-  setTextById("kepada", data.k);
   setTextById("perihal", data.p);
 
   const lampiran = document.getElementById("urlLampiran");
+
+  if (kepadaElement) {
+    kepadaElement.innerHTML = formatKepada(data.k);
+  }
 
   if (lampiran) {
     if (data.l) {
@@ -123,6 +127,24 @@ function loadSignatureData() {
       lampiran.removeAttribute("rel");
     }
   }
+}
+
+function formatKepada(value) {
+  if (!value) {
+    return "-";
+  }
+
+  return value
+    .split(/\),\s*/)
+    .map(function (item, index, array) {
+      if (index < array.length - 1) {
+        return item.trim() + ")";
+      }
+
+      return item.trim();
+    })
+    .filter(Boolean)
+    .join("<br>");
 }
 
 document.addEventListener("DOMContentLoaded", loadSignatureData);
