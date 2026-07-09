@@ -1,0 +1,174 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  color: #ffffff;
+}
+
+/* Background utama */
+.signature-page {
+  min-height: 100vh;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.25), transparent 35%),
+    linear-gradient(135deg, #ff7a18 0%, #ff9f1c 40%, #c2410c 100%);
+}
+
+/* Card utama */
+.signature-card {
+  width: 100%;
+  max-width: 430px;
+  padding: 32px 28px;
+  border-radius: 18px;
+  background: rgba(28, 28, 28, 0.88);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  text-align: left;
+  animation: fadeIn 0.5s ease;
+}
+
+.logo-wrapper {
+  text-align: center;
+  margin-bottom: 14px;
+}
+
+.logo {
+  width: 140px;
+  max-width: 65%;
+  height: auto;
+}
+
+.signature-card h1 {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 28px;
+}
+
+.metadata {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.label {
+  font-size: 11px;
+  color: #bdbdbd;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.value {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.45;
+  color: #ffffff;
+  word-break: break-word;
+}
+
+.link {
+  color: #ffb703;
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+footer {
+  text-align: center;
+  margin-top: 28px;
+  font-size: 11px;
+  color: #bdbdbd;
+}
+
+/* Responsive tablet */
+@media (max-width: 768px) {
+  .signature-page {
+    padding: 20px;
+  }
+
+  .signature-card {
+    max-width: 420px;
+    padding: 28px 24px;
+  }
+
+  .signature-card h1 {
+    font-size: 17px;
+  }
+}
+
+/* Responsive mobile */
+@media (max-width: 480px) {
+  .signature-page {
+    align-items: flex-start;
+    padding: 18px;
+  }
+
+  .signature-card {
+    margin-top: 36px;
+    padding: 24px 20px;
+    border-radius: 16px;
+  }
+
+  .logo {
+    width: 120px;
+  }
+
+  .signature-card h1 {
+    font-size: 16px;
+    margin-bottom: 24px;
+  }
+
+  .label {
+    font-size: 10px;
+  }
+
+  .value {
+    font-size: 13px;
+  }
+
+  footer {
+    font-size: 10px;
+  }
+}
+
+/* Responsive layar kecil banget */
+@media (max-width: 360px) {
+  .signature-card {
+    padding: 22px 18px;
+  }
+
+  .metadata {
+    gap: 14px;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
