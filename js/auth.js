@@ -64,7 +64,7 @@ document
 
             if (response.ok) {
                 alert("berhasil register");
-                window.location.href = "/dashboard.html";
+                window.location.href = "/login.html";
             } else {
                 console.error("gagal register");
             }
