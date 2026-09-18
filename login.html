@@ -44,6 +44,7 @@
       flex-direction: column;
       align-items: center;
       text-align: center;
+      position: relative;
     }
 
     .custom-alert-overlay.show .custom-alert-box {
@@ -79,6 +80,54 @@
       line-height: 1.5;
     }
 
+    /* Link bantuan pada modal */
+    .alert-help-link {
+      display: inline-block;
+      margin-top: 16px;
+      color: #ea580c;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .alert-help-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Help Center Admin */
+    .alert-admin-link {
+      display: inline-block;
+      margin-top: 12px;
+      color: #16a34a;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .alert-admin-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Tombol daftar pada modal */
+    .alert-register-btn {
+      display: inline-block;
+      margin-top: 16px;
+      padding: 10px 20px;
+      background: #ea580c;
+      color: #ffffff;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .alert-register-btn:hover {
+      background: #c2410c;
+    }
+
     .custom-alert-box.success .alert-icon {
       background-color: #dcfce7;
       color: #16a34a;
@@ -86,6 +135,95 @@
 
     .custom-alert-box.error .alert-icon {
       background-color: #fee2e2;
+      color: #dc2626;
+    }
+    
+    /* =========================
+      BUTTON BANTUAN
+      ========================= */
+    .btn-help {
+      width: 100%;
+      min-height: 48px;
+      margin-top: 12px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+
+      padding: 0 15px;
+
+      border: 1px solid #cbd7e6;
+      border-radius: 7px;
+
+      background: #ffffff;
+      color: var(--navy);
+
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 700;
+
+      cursor: pointer;
+
+      transition:
+        background-color 0.18s ease,
+        border-color 0.18s ease,
+        color 0.18s ease,
+        box-shadow 0.18s ease,
+        transform 0.18s ease;
+    }
+
+    .btn-help:hover {
+      transform: translateY(-1px);
+      background: var(--primary-soft);
+      color: var(--primary);
+      border-color: var(--primary);
+      box-shadow: 0 6px 16px rgba(244, 81, 11, 0.12);
+    }
+
+    .btn-help:active {
+      transform: translateY(0);
+      box-shadow: none;
+    }
+
+    .btn-help:focus-visible {
+      outline: 3px solid rgba(244, 81, 11, 0.18);
+      outline-offset: 2px;
+    }
+
+    .btn-help i {
+      font-size: 17px;
+      line-height: 1;
+    }
+
+    .alert-close-btn {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+
+      width: 32px;
+      height: 32px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border: none;
+      border-radius: 50%;
+
+      background: transparent;
+      color: #64748b;
+
+      font-size: 22px;
+      font-weight: 500;
+
+      cursor: pointer;
+
+      transition: all 0.2s ease;
+    }
+
+    .alert-close-btn:hover {
+      background: #f1f5f9;
       color: #dc2626;
     }
   </style>
@@ -176,6 +314,10 @@
             <button type="submit" class="btn-primary">Login</button>
             <button type="button" class="btn-secondary" onclick="window.location.href='/register.html'">Daftar Akun
               Baru</button>
+            <button type="button" class="btn-help" onclick="window.location.href='faq.html'">
+                <i class="lni lni-question-circle"></i>
+                Bantuan?
+            </button>
             <button type="button" onclick="HandleBack()" style="width: 100%; padding: 12px; background: transparent; color: #64748b; border: none; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer; margin-top: 8px; transition: color 0.2s; text-decoration: underline; text-decoration-color: transparent; display: flex; align-items: center; justify-content: center; gap: 6px;" onmouseover="this.style.color='#ea580c'; this.style.textDecorationColor='#ea580c'" onmouseout="this.style.color='#64748b'; this.style.textDecorationColor='transparent'">
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <path d="m15 18-6-6 6-6"/>
@@ -203,7 +345,7 @@
     function HandleBack() {
       window.location.replace("https://helpdesk.ulbi.ac.id/");
     }
-    function showCustomAlert(message, type = "success", autoClose = true) {
+    function showCustomAlert(message, type = "success") {
       const overlay = document.getElementById("customAlert");
       const content = document.getElementById("alertContent");
 
@@ -212,26 +354,74 @@
         : '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
 
       content.className = "custom-alert-box " + type;
+
       content.innerHTML = `
+        ${
+          type === "error"
+            ? `
+              <button
+                type="button"
+                class="alert-close-btn"
+                onclick="closeCustomAlert()"
+                aria-label="Tutup"
+              >
+                ×
+              </button>
+            `
+            : ""
+        }
+
         <div class="alert-icon">${iconSvg}</div>
-        <h3>${type === "success" ? "Berhasil!" : "Gagal!"}</h3>
+
+        <h3>
+          ${type === "success" ? "Berhasil!" : "Gagal!"}
+        </h3>
+
         <p>${message}</p>
+
+        ${
+          type === "error"
+            ? `
+              <a
+                href="https://wa.me/6289657140789"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="alert-admin-link"
+              >
+                Hubungi Help Center Admin — Rifky Najra Adipura →
+              </a>
+            `
+            : ""
+        }
       `;
 
       overlay.classList.add("show");
 
-      if (autoClose) {
+      // Hanya modal SUCCESS yang otomatis tertutup
+      if (type === "success") {
         setTimeout(() => {
           overlay.classList.remove("show");
         }, 3000);
       }
 
-      // Tutup saat klik di luar kotak
+      // Tutup ketika klik area luar modal
       overlay.onclick = (e) => {
         if (e.target === overlay) {
-          overlay.classList.remove("show");
+          closeCustomAlert();
         }
       };
+    }
+
+    function closeCustomAlert() {
+      const overlay = document.getElementById("customAlert");
+
+      overlay.classList.remove("show");
+    }
+
+    function closeCustomAlert() {
+      const overlay = document.getElementById("customAlert");
+
+      overlay.classList.remove("show");
     }
 
     // Password toggle functionality
@@ -260,12 +450,21 @@
         const email = document.getElementById("email").value.trim();
         const password = document.getElementById("password").value;
 
+        // ==========================================
+        // VALIDASI INPUT
+        // ==========================================
         if (!email || !password) {
-          showCustomAlert("Email dan password harus diisi.", "error");
+          showCustomAlert(
+            "Email dan password harus diisi terlebih dahulu.",
+            "error"
+          );
           return;
         }
 
         try {
+          // ==========================================
+          // REQUEST LOGIN KE API
+          // ==========================================
           const response = await fetch(
             "https://ruangsehat-be.ulbi.ac.id/api/public/login",
             {
@@ -274,45 +473,140 @@
                 "Content-Type": "application/json",
               },
               body: JSON.stringify({
-                email,
-                password,
+                email: email,
+                password: password,
               }),
             }
           );
 
+          // Ambil response dari backend
           const result = await response.json();
 
+          console.log("Login response:", result);
+          console.log("HTTP status:", response.status);
+
+          // ==========================================
+          // 1. LOGIN BERHASIL
+          // ==========================================
           if (response.ok && result.data?.token) {
-            console.log("data reuslt: ", result);
+            console.log("Data result:", result);
+
             localStorage.setItem("token", result.data.token);
             localStorage.setItem("iduser", result.data.user_id);
+
             showCustomAlert(
               "Login berhasil! Mengarahkan ke dashboard...",
               "success"
             );
+
             setTimeout(() => {
               window.location.href = "./info.html";
             }, 1500);
-          } else if (result.code == 404) {
-            showCustomAlert(
-              "Akun kamu belum terdaftar, Silahkan lakukan register terlebih dahulu.",
-              "error"
-            );
-            setTimeout(() => {
-              window.location.replace("/register.html");
-            }, 5000);
-          } else {
-            showCustomAlert(
-              result.status || "Email atau password salah.",
-              "error"
-            );
+
+            return;
           }
-        } catch (error) {
-          console.error("Error:", error);
+
+          // ==========================================
+          // 2. AKUN BELUM TERDAFTAR
+          // ==========================================
+          if (result.code == 404 || response.status == 404) {
+            showCustomAlert(
+              `
+                Email yang Anda masukkan belum terdaftar.
+                <br>
+
+                <span style="
+                  display: block;
+                  margin-top: 10px;
+                  line-height: 1.5;
+                ">
+                  Silakan lakukan registrasi terlebih dahulu untuk membuat akun.
+                </span>
+
+                <a
+                  href="/register.html"
+                  class="alert-register-btn"
+                >
+                  Daftar Sekarang
+                </a>
+              `,
+              "error"
+            );
+
+            return;
+          }
+
+          // ==========================================
+          // 3. EMAIL / PASSWORD SALAH
+          // ==========================================
+          const errorMessage =
+            result.status ||
+            result.message ||
+            "Email atau password yang Anda masukkan tidak sesuai.";
+
           showCustomAlert(
-            "Gagal terhubung ke server. Periksa koneksi Anda.",
+            `
+              ${errorMessage}
+
+              <br>
+
+              <span style="
+                display: block;
+                margin-top: 12px;
+                font-size: 13px;
+                color: #64748b;
+                line-height: 1.5;
+              ">
+                Silakan periksa kembali email dan password Anda.
+                <br>
+                Jika lupa password atau mengalami kendala akun SIAKAD/eDLINK,
+                silakan cek panduan bantuan melalui FAQ.
+              </span>
+
+              <a
+                href="faq.html"
+                class="alert-help-link"
+              >
+                Lihat Panduan di FAQ →
+              </a>
+            `,
             "error"
           );
+
+          return;
+
+        } catch (error) {
+          // ==========================================
+          // 4. SERVER / KONEKSI / REQUEST ERROR
+          // ==========================================
+          console.error("Error:", error);
+
+          showCustomAlert(
+            `
+              Gagal terhubung ke server.
+              <br>
+
+              <span style="
+                display: block;
+                margin-top: 10px;
+                font-size: 13px;
+                color: #64748b;
+                line-height: 1.5;
+              ">
+                Periksa koneksi internet Anda dan coba lagi.
+              </span>
+
+              <a
+                href="faq.html"
+                class="alert-help-link"
+              >
+                Butuh bantuan? Lihat FAQ →
+              </a>
+            `,
+            "error"
+          );
+
+          return;
         }
       });
   </script>

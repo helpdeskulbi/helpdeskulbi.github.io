@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FAQ - Helpdesk ULBI</title>
+
+    <link rel="shortcut icon" href="imgs/ulbi.png" type="image/ico">
+
+    <!-- Existing CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/LineIcons.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/default.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- FAQ CSS -->
+    <link rel="stylesheet" href="css/faq.css">
+</head>
+
+<body>
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+    <header class="faq-header">
+        <div class="navbar-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <nav class="navbar navbar-expand-lg">
+                            <a class="navbar-brand" href="/">
+                                <img
+                                    src="imgs/logoULBI.png"
+                                    alt="Logo ULBI"
+                                    style="height: 60px;"
+                                >
+                            </a>
+
+                            <button
+                                class="navbar-toggler"
+                                type="button"
+                                data-toggle="collapse"
+                                data-target="#navbarSupportedContent"
+                                aria-controls="navbarSupportedContent"
+                                aria-expanded="false"
+                                aria-label="Toggle navigation"
+                            >
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                            </button>
+
+                            <div
+                                class="collapse navbar-collapse sub-menu-bar"
+                                id="navbarSupportedContent"
+                            >
+                                <ul id="nav" class="navbar-nav ml-auto">
+                                    <li class="nav-item">
+                                        <a href="index.html">
+                                            Beranda
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item active">
+                                        <a href="faq.html">
+                                            FAQ
+                                        </a>
+                                    </li>
+
+                                </ul>
+
+                                <div class="navbar-auth">
+                                    <div class="navbar-btn d-inline-block">
+                                        <button
+                                            class="main-btn btn-block"
+                                            id="loginulbi"
+                                            type="button"
+                                            onclick="window.location.href='login.html'"
+                                        >
+                                            Log in
+                                        </button>
+                                    </div>
+
+                                    <div class="navbar-btn d-inline-block">
+                                        <button
+                                            class="main-btn btn-block"
+                                            id="registerulbi"
+                                            type="button"
+                                            onclick="window.location.href='register.html'"
+                                        >
+                                            Register
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- =========================
+         FAQ CONTENT
+    ========================== -->
+    <main class="faq-page">
+        <div class="container">
+            <!-- FAQ Heading -->
+            <div class="faq-heading text-center">
+                <div class="faq-line"></div>
+                <h1>FAQ</h1>
+                <p>
+                    Panduan untuk mengatasi kendala login pada SIAKAD ULBI.
+                </p>
+            </div>
+
+            </div> <!-- faq-card -->
+                <div class="faq-back-home">
+                    <a href="index.html" class="back-home-btn">
+                        <i class="lni lni-arrow-left"></i>
+                        Kembali ke Halaman Utama
+                    </a>
+                </div>
+            </div> <!-- container -->
+
+            <!-- FAQ Card -->
+            <div class="faq-card">
+                <!-- Question -->
+                <button
+                    type="button"
+                    class="faq-question"
+                    id="faqQuestion"
+                    aria-expanded="false"
+                    aria-controls="faqAnswer"
+                >
+                    <div class="faq-question-content">
+                        <span class="faq-icon">
+                            <i class="lni lni-lock"></i>
+                        </span>
+                        <span class="faq-question-text">
+                            Saya gagal login karena lupa password, bagaimana cara mengganti password?
+                        </span>
+                    </div>
+                    <span class="faq-arrow">
+                        <i class="lni lni-chevron-down"></i>
+                    </span>
+                </button>
+
+                <!-- Answer -->
+                <div
+                    class="faq-answer"
+                    id="faqAnswer"
+                    aria-hidden="true"
+                >
+                    <div class="faq-answer-inner">
+                        <p class="faq-intro">
+                            Ikuti langkah berikut untuk mengganti password akun
+                            yang digunakan untuk login ke SIAKAD.
+                        </p>
+                        <!-- STEP 1 -->
+                        <div class="faq-step">
+                            <div class="step-number">
+                                1
+                            </div>
+                            <div class="step-content">
+                                <h3>
+                                    Buka terlebih dahulu
+                                    <a href="https://siakad.ulbi.ac.id/gate/login" target="_blank" rel="noopener noreferrer">
+                                        Sistem Informasi Akademik
+                                    </a>
+                                    (SIAKAD ULBI), kemudian klik <strong>“Lupa kata sandi?”</strong>.
+                                </h3>
+                                <div class="step-image">
+                                    <img
+                                        src="imgs/faq/step-1.png"
+                                        alt="Halaman login SIAKAD ULBI"
+                                        loading="lazy"
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                        <!-- STEP 2 -->
+                        <div class="faq-step">
+                            <div class="step-number">
+                                2
+                            </div>
+                            <div class="step-content">
+                                <h3>
+                                    Masukkan <strong>email akun yang sudah terdaftar</strong> pada halaman Pemulihan Akun.
+                                </h3>
+                                <div class="step-image">
+                                    <img
+                                        src="imgs/faq/step-2.png"
+                                        alt="Halaman Pemulihan Akun SEVIMA"
+                                        loading="lazy"
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                        <!-- STEP 3 -->
+                        <div class="faq-step">
+                            <div class="step-number">
+                                3
+                            </div>
+                            <div class="step-content">
+                                <h3>
+                                    Klik tombol <strong>“Kirimkan”</strong> untuk mengirim permintaan pemulihan akun.
+                                </h3>
+                                <div class="step-image">
+                                    <img
+                                        src="imgs/faq/step-3.png"
+                                        alt="Permintaan pemulihan akun berhasil dikirim"
+                                        loading="lazy"
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                        <!-- STEP 4 -->
+                        <div class="faq-step">
+                            <div class="step-number">
+                                4
+                            </div>
+                            <div class="step-content">
+                                <h3>
+                                    Buka email dari <strong>SEVIMA Platform SSO</strong> dengan subjek <strong>“Pemulihan akun SEVIMA Platform”</strong>.
+                                </h3>
+                                <div class="step-image">
+                                    <img
+                                        src="imgs/faq/step-4.png"
+                                        alt="Email pemulihan akun SEVIMA"
+                                        loading="lazy"
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                        <!-- STEP 5 -->
+                        <div class="faq-step">
+                            <div class="step-number">
+                                5
+                            </div>
+                            <div class="step-content">
+                                <h3>
+                                    Pada email tersebut, klik tombol <strong>“Buat Password Baru”</strong>.
+                                </h3>
+                                <div class="step-image">
+                                    <img
+                                        src="imgs/faq/step-5.png"
+                                        alt="Tombol Buat Password Baru"
+                                        loading="lazy"
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                        <!-- STEP 6 -->
+                        <div class="faq-step">
+                            <div class="step-number">
+                                6
+                            </div>
+                            <div class="step-content">
+                                <h3>
+                                    Masukkan <strong>Email, Password Baru</strong> dan masukkan kembali pada <strong>Ulangi Password Baru</strong>.
+                                </h3>
+                                <div class="step-image">
+                                    <img
+                                        src="imgs/faq/step-6.png"
+                                        alt="Form pembuatan password baru"
+                                        loading="lazy"
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                        <!-- STEP 7 -->
+                        <div class="faq-step">
+                            <div class="step-number">
+                                7
+                            </div>
+                            <div class="step-content">
+                                <h3>
+                                    Klik tombol <strong>“Simpan”</strong> untuk menyimpan password baru.
+                                </h3>
+                                <div class="step-image">
+                                    <img
+                                        src="imgs/faq/step-7.png"
+                                        alt="Tombol Simpan password baru"
+                                        loading="lazy"
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                        <!-- STEP 8 -->
+                        <div class="faq-step">
+                            <div class="step-number">
+                                8
+                            </div>
+                            <div class="step-content">
+                                <h3>
+                                    Jika muncul pesan <strong>“Pemulihan Akun berhasil”</strong>, login kembali ke SIAKAD menggunakan password baru.
+                                </h3>
+                                <div class="step-image">
+                                    <img
+                                        src="imgs/faq/step-8.png"
+                                        alt="Pemulihan akun berhasil"
+                                        loading="lazy"
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- =========================
+        FOOTER
+    ========================== -->
+    <footer class="faq-footer">
+        <div class="container">
+            <p>Copyright © 2026. Helpdesk ULBI</p>
+        </div>
+    </footer>
+
+    <!-- =========================
+         SCRIPTS
+    ========================== -->
+    <script src="js/jquery-2.2.4.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- FAQ -->
+    <script src="js/faq.js"></script>
+
+</body>
+
+</html>
