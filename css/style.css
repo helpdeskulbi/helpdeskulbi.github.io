@@ -38,53 +38,6 @@ body {
   overflow-x: hidden;
 }
 
-.announcement-ticker {
-  width: 100%;
-  overflow: hidden;
-  background: #fff2eb;
-  border-top: 1px solid #d8e1ee;
-  border-bottom: 1px solid #d8e1ee;
-  color: #0f1f3d;
-  white-space: nowrap;
-}
-
-.announcement-ticker__track {
-  display: flex;
-  width: max-content;
-  animation: announcement-ticker-scroll 26s linear infinite;
-  will-change: transform;
-}
-
-.announcement-ticker__group {
-  display: flex;
-  flex: 0 0 auto;
-  align-items: center;
-  justify-content: center;
-  min-width: 100vw;
-}
-
-.announcement-ticker__message {
-  flex: 0 0 auto;
-  padding: 11px 0;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-}
-
-.announcement-ticker__message span {
-  padding: 0 12px;
-  color: #f4510b;
-}
-
-@keyframes announcement-ticker-scroll {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
 * {
   margin: 0;
   padding: 0;
