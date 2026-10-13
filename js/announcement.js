@@ -1,3 +1,8 @@
+// Pilih file pengumuman yang aktif:
+// - "../announcement.html"        : Fase jadwal pra-pembuatan (sebelum akun dibuat)
+// - "../announcement-selesai.html": Fase akun telah digenerate (siap aktivasi & ikuti tutorial)
+const ACTIVE_ANNOUNCEMENT = "../announcement-selesai.html";
+
 async function loadAnnouncement() {
     const announcementPlaceholder = document.querySelector("#announcement-placeholder");
 
@@ -6,7 +11,7 @@ async function loadAnnouncement() {
     }
 
     try {
-        const response = await fetch(new URL("../announcement.html", import.meta.url));
+        const response = await fetch(new URL(ACTIVE_ANNOUNCEMENT, import.meta.url));
 
         if (!response.ok) {
             throw new Error(`Failed to load announcement: ${response.status} ${response.statusText}`);
