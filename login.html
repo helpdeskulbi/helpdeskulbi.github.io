@@ -383,12 +383,19 @@
           type === "error"
             ? `
               <a
-                href="https://wa.me/6289657140789"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="mailto:dti@ulbi.ac.id?subject=${encodeURIComponent('[Helpdesk ULBI] Kendala Login Akun')}&body=${encodeURIComponent(
+`Halo Tim Helpdesk DTI ULBI,\r\n\r\n` +
+`Saya mengalami kendala saat melakukan login ke Helpdesk ULBI. Berikut data diri dan rincian kendala saya:\r\n\r\n` +
+`- Nama Lengkap : \r\n` +
+`- NPM          : \r\n` +
+`- Email Akun   : ${document.getElementById('email') ? document.getElementById('email').value.trim() : ''}\r\n` +
+`- Kendala      : \r\n` +
+`- Bukti Screenshot (SS) : (Silakan lampirkan gambar/screenshot kendala pada email ini)\r\n\r\n` +
+`Mohon bantuannya untuk dapat ditindaklanjuti. Terima kasih.`
+                )}"
                 class="alert-admin-link"
               >
-                Hubungi Help Center Admin — Rifky Najra Adipura →
+                Hubungi Help Center DTI — dti@ulbi.ac.id →
               </a>
             `
             : ""
@@ -396,15 +403,11 @@
       `;
 
       overlay.classList.add("show");
-
-      // Hanya modal SUCCESS yang otomatis tertutup
       if (type === "success") {
         setTimeout(() => {
           overlay.classList.remove("show");
         }, 3000);
       }
-
-      // Tutup ketika klik area luar modal
       overlay.onclick = (e) => {
         if (e.target === overlay) {
           closeCustomAlert();
@@ -424,7 +427,6 @@
       overlay.classList.remove("show");
     }
 
-    // Password toggle functionality
     const togglePassword = document.getElementById("togglePassword");
     const passwordInput = document.getElementById("password");
     const eyeIcon = document.getElementById("eyeIcon");
@@ -433,7 +435,6 @@
       const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
       passwordInput.setAttribute("type", type);
 
-      // Toggle icon visually
       if (type === "password") {
         eyeIcon.innerHTML = '<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/>';
       } else {
@@ -441,7 +442,6 @@
       }
     });
 
-    // Event listener form login
     document
       .getElementById("loginForm")
       .addEventListener("submit", async function (event) {
@@ -450,9 +450,6 @@
         const email = document.getElementById("email").value.trim();
         const password = document.getElementById("password").value;
 
-        // ==========================================
-        // VALIDASI INPUT
-        // ==========================================
         if (!email || !password) {
           showCustomAlert(
             "Email dan password harus diisi terlebih dahulu.",
@@ -462,9 +459,6 @@
         }
 
         try {
-          // ==========================================
-          // REQUEST LOGIN KE API
-          // ==========================================
           const response = await fetch(
             "https://ruangsehat-be.ulbi.ac.id/api/public/login",
             {
@@ -479,15 +473,11 @@
             }
           );
 
-          // Ambil response dari backend
           const result = await response.json();
 
           console.log("Login response:", result);
           console.log("HTTP status:", response.status);
 
-          // ==========================================
-          // 1. LOGIN BERHASIL
-          // ==========================================
           if (response.ok && result.data?.token) {
             console.log("Data result:", result);
 
@@ -506,9 +496,6 @@
             return;
           }
 
-          // ==========================================
-          // 2. AKUN BELUM TERDAFTAR
-          // ==========================================
           if (result.code == 404 || response.status == 404) {
             showCustomAlert(
               `
@@ -536,9 +523,6 @@
             return;
           }
 
-          // ==========================================
-          // 3. EMAIL / PASSWORD SALAH
-          // ==========================================
           const errorMessage =
             result.status ||
             result.message ||
@@ -576,9 +560,6 @@
           return;
 
         } catch (error) {
-          // ==========================================
-          // 4. SERVER / KONEKSI / REQUEST ERROR
-          // ==========================================
           console.error("Error:", error);
 
           showCustomAlert(
