@@ -1,34 +1,28 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    const faqQuestion = document.getElementById("faqQuestion");
-    const faqAnswer = document.getElementById("faqAnswer");
+    const faqQuestions = document.querySelectorAll(".faq-question");
 
-    if (!faqQuestion || !faqAnswer) {
+    if (!faqQuestions.length) {
         return;
     }
 
-    faqQuestion.addEventListener("click", function () {
+    faqQuestions.forEach(function (faqQuestion) {
+        const answerId = faqQuestion.getAttribute("aria-controls");
+        const faqAnswer = document.getElementById(answerId);
 
-        const isOpen = faqQuestion.classList.contains("active");
-
-        if (isOpen) {
-
-            faqQuestion.classList.remove("active");
-            faqQuestion.setAttribute("aria-expanded", "false");
-
-            faqAnswer.classList.remove("open");
-            faqAnswer.setAttribute("aria-hidden", "true");
-
-        } else {
-
-            faqQuestion.classList.add("active");
-            faqQuestion.setAttribute("aria-expanded", "true");
-
-            faqAnswer.classList.add("open");
-            faqAnswer.setAttribute("aria-hidden", "false");
-
+        if (!faqAnswer) {
+            return;
         }
 
+        faqQuestion.addEventListener("click", function () {
+            const isOpen = faqQuestion.classList.contains("active");
+
+            faqQuestion.classList.toggle("active", !isOpen);
+            faqQuestion.setAttribute("aria-expanded", String(!isOpen));
+
+            faqAnswer.classList.toggle("open", !isOpen);
+            faqAnswer.setAttribute("aria-hidden", String(isOpen));
+        });
     });
 
 });
