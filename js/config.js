@@ -1,0 +1,1 @@
+const API_BASE_URL = "https://ruangsehat-be.ulbi.ac.id";

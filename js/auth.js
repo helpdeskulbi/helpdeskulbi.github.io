@@ -13,7 +13,7 @@ document
 
         try {
             const response = await fetch(
-                "https://ruangsehat-be.ulbi.ac.id/api/public/login", {
+                `${typeof API_BASE_URL !== "undefined" ? API_BASE_URL : (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" ? "http://localhost:3000" : "https://ruangsehat-be.ulbi.ac.id")}/api/public/login`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -52,7 +52,7 @@ document
 
         try {
             const response = await fetch(
-                `https://ruangsehat-be.ulbi.ac.id/api/public/mhs/sinkron?nim=${npm}`, {
+                `${typeof API_BASE_URL !== "undefined" ? API_BASE_URL : (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1" ? "http://localhost:3000" : "https://ruangsehat-be.ulbi.ac.id")}/api/public/mhs/sinkron?nim=${npm}`, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",

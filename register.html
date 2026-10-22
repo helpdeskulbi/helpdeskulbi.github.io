@@ -103,9 +103,10 @@
       </div>
     </div>
 
+    <script src="js/config.js"></script>
     <script>
       function HandleBack() {
-        window.location.replace("https://helpdesk.ulbi.ac.id/");
+        window.location.replace("./");
       }
       function showCustomAlert(message, type = "success", autoClose = true) {
         const overlay = document.getElementById("customAlert");
@@ -146,7 +147,7 @@
 
           try {
             const response = await fetch(
-              `https://ruangsehat-be.ulbi.ac.id/api/public/mhs/sinkron?nim=${encodeURIComponent(
+              `${API_BASE_URL}/api/public/mhs/sinkron?nim=${encodeURIComponent(
                 npm
               )}`,
               {
