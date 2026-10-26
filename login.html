@@ -314,7 +314,7 @@
             <div style="display: flex; justify-content: flex-end; margin: -6px 0 16px 0;">
               <a href="javascript:void(0)" id="openForgotEmailModal" style="font-size: 13px; color: #ea580c; text-decoration: none; font-weight: 600; transition: color 0.2s;" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">Lupa email akun?</a>
             </div>
-            <button type="submit" class="btn-primary">Login</button>
+            <button type="submit" id="loginSubmitBtn" class="btn-primary">Login</button>
             <button type="button" class="btn-secondary" onclick="window.location.href='/register.html'">Daftar Akun
               Baru</button>
             <button type="button" class="btn-help" onclick="window.location.href='faq.html'">
@@ -392,6 +392,7 @@
             <div class="form-group" style="margin-bottom: 0;">
               <label for="feDob" style="display: block; font-size: 13px; font-weight: 600; color: #334155; margin-bottom: 4px;">Tanggal Lahir</label>
               <input type="date" id="feDob" required style="width: 100%; height: 44px; padding: 0 12px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 14px; box-sizing: border-box; outline: none; transition: border-color 0.2s; font-family: inherit;" onfocus="this.style.borderColor='#ea580c'" onblur="this.style.borderColor='#cbd5e1'" />
+              <span style="display: block; font-size: 11px; color: #64748b; margin-top: 3px;">Format kalender mengikuti pengaturan peramban/perangkat Anda (hari/bulan/tahun).</span>
             </div>
 
             <div class="form-group" style="margin-bottom: 0;">
@@ -565,24 +566,27 @@
                 Bantuan Verifikasi Manual DTI ULBI
               </div>
               <p style="font-size: 12px; color: #78350f; margin: 0; line-height: 1.4;">
-                Jika Anda lupa kata sandi SIAKAD dan kata sandi Helpdesk, silakan kunjungi loket layanan DTI ULBI dengan membawa Kartu Tanda Mahasiswa (KTM) fisik asli.
+                Jika Anda lupa kata sandi SIAKAD dan kata sandi Helpdesk, silakan kirimkan email permohonan ke DTI dengan format resmi di bawah ini, atau kunjungi loket DTI di Gedung Rektorat ULBI Lt. 1 dengan membawa KTM fisik asli.
               </p>
             </div>
 
-            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px; font-size: 12px; color: #334155; line-height: 1.5; margin-bottom: 14px;">
-              <strong style="color: #0f172a; display: block; margin-bottom: 6px;">Kontak & Lokasi Layanan:</strong>
-              • Email: <strong style="color: #ea580c;">dti@ulbi.ac.id</strong><br>
-              • Lokasi: Gedung Rektorat ULBI Lt. 1 (Divisi Teknologi & Informasi)<br>
-              • Jam Layanan: Senin - Jumat (08.00 - 16.00 WIB)
+            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px; margin-bottom: 12px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <strong style="color: #0f172a; font-size: 12px;">Format Email Permohonan Bantuan:</strong>
+                <button type="button" id="ceCopyFormatBtn" style="background: #ffffff; border: 1px solid #cbd5e1; border-radius: 6px; padding: 4px 8px; font-size: 11px; font-weight: 600; color: #334155; cursor: pointer; display: inline-flex; align-items: center; gap: 4px;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                  <span id="ceCopyFormatBtnText">Salin Format Teks</span>
+                </button>
+              </div>
+              <div id="ceEmailFormatPreview" style="background: #ffffff; border: 1px solid #cbd5e1; border-radius: 6px; padding: 10px; font-family: Consolas, monospace; font-size: 11px; color: #1e293b; white-space: pre-wrap; word-break: break-all; max-height: 140px; overflow-y: auto; line-height: 1.4;"></div>
             </div>
 
             <div style="display: flex; flex-direction: column; gap: 8px;">
-              <a id="ceDirectMailtoBtn" href="mailto:dti@ulbi.ac.id?subject=%5BHelpdesk%20ULBI%5D%20Kendala%20Akun%20Mahasiswa" class="btn-primary" style="display: flex; align-items: center; justify-content: center; gap: 6px; text-decoration: none; min-height: 42px; width: 100%; box-sizing: border-box;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                  <polyline points="22,6 12,13 2,6"/>
+              <a id="ceGmailBtn" href="#" target="_blank" rel="noopener noreferrer" class="btn-primary" style="display: flex; align-items: center; justify-content: center; gap: 6px; text-decoration: none; min-height: 42px; width: 100%; box-sizing: border-box; background: #ea4335;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
                 </svg>
-                Kirim Email ke dti@ulbi.ac.id
+                Kirim Permohonan via Gmail Web
               </a>
               <button type="button" id="ceBackToSelfServiceBtn" style="background: #f1f5f9; color: #475569; border: 1px solid #cbd5e1; border-radius: 7px; padding: 10px; font-size: 13px; font-weight: 600; cursor: pointer;">
                 Kembali ke Ganti Email Mandiri
@@ -613,6 +617,16 @@
 
     function HandleBack() {
       window.location.replace("./");
+    }
+
+    function escapeHTML(str) {
+      if (!str) return "";
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
     }
     function showCustomAlert(message, type = "success") {
       const overlay = document.getElementById("customAlert");
@@ -690,12 +704,6 @@
       overlay.classList.remove("show");
     }
 
-    function closeCustomAlert() {
-      const overlay = document.getElementById("customAlert");
-
-      overlay.classList.remove("show");
-    }
-
     const togglePassword = document.getElementById("togglePassword");
     const passwordInput = document.getElementById("password");
     const eyeIcon = document.getElementById("eyeIcon");
@@ -727,6 +735,12 @@
           return;
         }
 
+        const loginSubmitBtn = document.getElementById("loginSubmitBtn");
+        if (loginSubmitBtn) {
+          loginSubmitBtn.disabled = true;
+          loginSubmitBtn.textContent = "Memproses Login...";
+        }
+
         try {
           const response = await fetch(
             `${API_BASE_URL}/api/public/login`,
@@ -744,12 +758,7 @@
 
           const result = await response.json();
 
-          console.log("Login response:", result);
-          console.log("HTTP status:", response.status);
-
           if (response.ok && result.data?.token) {
-            console.log("Data result:", result);
-
             localStorage.setItem("token", result.data.token);
             localStorage.setItem("iduser", result.data.user_id);
 
@@ -792,10 +801,11 @@
             return;
           }
 
-          const errorMessage =
+          const errorMessage = escapeHTML(
             result.status ||
             result.message ||
-            "Email atau password yang Anda masukkan tidak sesuai.";
+            "Email atau password yang Anda masukkan tidak sesuai."
+          );
 
           showCustomAlert(
             `
@@ -857,6 +867,11 @@
           );
 
           return;
+        } finally {
+          if (loginSubmitBtn) {
+            loginSubmitBtn.disabled = false;
+            loginSubmitBtn.textContent = "Login";
+          }
         }
       });
 
@@ -864,6 +879,8 @@
     const forgotEmailOverlay = document.getElementById("forgotEmailOverlay");
     const openForgotEmailModal = document.getElementById("openForgotEmailModal");
     const closeForgotEmailModal = document.getElementById("closeForgotEmailModal");
+    const feTitle = document.getElementById("feTitle");
+    const feSubtitle = document.getElementById("feSubtitle");
     
     // Step elements
     const feStep1Container = document.getElementById("feStep1Container");
@@ -1073,31 +1090,38 @@
     }
 
     function prepareDtiMailto(npm, emailHint) {
-      const subject = `[Helpdesk ULBI] Permohonan Ganti Email Akun - NPM ${npm || '(tuliskan NPM)'}`;
-      const body = `Halo Tim Helpdesk DTI ULBI,
+      const npmVal = npm || (ceNpm ? ceNpm.value.trim() : "") || activeNpm || "";
+      const subject = "[Helpdesk ULBI] Permohonan Ganti Email Akun";
+      const body = `Yth. Tim DTI ULBI,\r\n\r\n` +
+`Saya ingin mengajukan permohonan bantuan perubahan email akun Helpdesk ULBI karena verifikasi kepemilikan akun tidak berhasil.\r\n\r\n` +
+`Berikut data saya:\r\n\r\n` +
+`1. Nama lengkap: [Isi nama lengkap]\r\n` +
+`2. NPM: ${npmVal || "[Isi NPM]"}\r\n` +
+`3. Program studi: [Isi program studi]\r\n` +
+`4. Email lama/akun terdaftar: ${emailHint && emailHint !== "-" ? emailHint : "[Isi jika diketahui]"}\r\n` +
+`5. Email baru yang ingin digunakan: [Isi email baru]\r\n` +
+`6. Nomor WhatsApp aktif: [Isi nomor WhatsApp]\r\n` +
+`7. Alasan penggantian email: [Jelaskan alasan]\r\n\r\n` +
+`Saya bersedia melakukan verifikasi identitas sesuai prosedur yang ditetapkan oleh DTI ULBI. Jika diperlukan, saya akan mengikuti petunjuk resmi untuk menyampaikan bukti kepemilikan akun.\r\n\r\n` +
+`Mohon bantuan dan tindak lanjutnya.\r\n\r\n` +
+`Terima kasih.\r\n\r\n` +
+`Hormat saya,\r\n` +
+`[Nama lengkap]\r\n` +
+`${npmVal || "[NPM]"}`;
 
-Saya mengajukan permohonan penggantian email akun login Helpdesk ULBI karena email terdaftar di SIAKAD mengalami salah penulisan (typo) / sudah tidak dapat saya akses.
-
-Berikut data identitas saya:
-- Nama Lengkap : 
-- NPM          : ${npm || ''}
-- Program Studi: 
-- Petunjuk Email Lama : ${emailHint || '-'}
-- Alamat Email Baru   : (tuliskan alamat email aktif Anda di sini)
-- Nomor WhatsApp Aktif: 
-- Alasan Penggantian  : Email salah penulisan di SIAKAD / email lama tidak aktif
-
-*Catatan: Bersama email ini saya melampirkan Foto/Scan Kartu Tanda Mahasiswa (KTM) atau KTP asli saya sebagai bukti sah kepemilikan akun.
-
-Mohon bantuannya untuk dapat diproses penggantian email akun saya. Terima kasih.`;
-
-      if (feEmailSubjectCode) {
-        feEmailSubjectCode.textContent = subject;
+      const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=dti@ulbi.ac.id&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      const ceGmailBtn = document.getElementById("ceGmailBtn");
+      if (ceGmailBtn) {
+        ceGmailBtn.href = gmailUrl;
       }
-      if (feDirectMailtoBtn) {
-        feDirectMailtoBtn.href = `mailto:dti@ulbi.ac.id?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      const previewBox = document.getElementById("ceEmailFormatPreview");
+      if (previewBox) {
+        previewBox.textContent = `Kepada: dti@ulbi.ac.id\nSubjek: ${subject}\n\n${body}`;
       }
     }
+
+    // Inisialisasi awal format permohonan DTI agar tombol dan pratinjau selalu siap
+    prepareDtiMailto("", "-");
 
     if (openForgotEmailModal) {
       openForgotEmailModal.addEventListener("click", openFeModal);
@@ -1202,7 +1226,7 @@ Mohon bantuannya untuk dapat diproses penggantian email akun saya. Terima kasih.
             const isRateLimit = response.status === 429;
             const errorMsg = isRateLimit
               ? "Terlalu banyak percobaan pencarian. Demi keamanan akun, silakan tunggu beberapa menit sebelum mencoba lagi."
-              : (result.status || "Data identitas yang Anda masukkan tidak sesuai dengan catatan sistem.");
+              : escapeHTML(result.message || result.status || "Data identitas yang Anda masukkan tidak sesuai dengan catatan sistem.");
             feNoticeBox.style.display = "block";
             feNoticeBox.style.background = "#fee2e2";
             feNoticeBox.style.color = "#991b1b";
@@ -1305,7 +1329,7 @@ Mohon bantuannya untuk dapat diproses penggantian email akun saya. Terima kasih.
             const isRateLimit = response.status === 429;
             const errorMsg = isRateLimit
               ? "Terlalu banyak permintaan verifikasi. Demi keamanan akun, silakan tunggu beberapa saat sebelum mencoba kembali."
-              : (result.status || result.message || "NPM atau kata sandi tidak sesuai dengan catatan sistem.");
+              : escapeHTML(result.status || result.message || "NPM atau kata sandi tidak sesuai dengan catatan sistem.");
             showNotice(ceVerifyNotice, `<strong>${isRateLimit ? 'Terlalu Banyak Percobaan' : 'Verifikasi Gagal'}</strong><br>${errorMsg}`);
           }
         } catch (err) {
@@ -1355,7 +1379,7 @@ Mohon bantuannya untuk dapat diproses penggantian email akun saya. Terima kasih.
             const isRateLimit = response.status === 429;
             const errorMsg = isRateLimit
               ? "Permintaan pengiriman OTP terlalu sering. Silakan tunggu beberapa menit sebelum meminta kode baru."
-              : (result.status || result.message || "Gagal mengirimkan kode OTP.");
+              : escapeHTML(result.status || result.message || "Gagal mengirimkan kode OTP.");
             showNotice(ceOtpNotice, `<strong>${isRateLimit ? 'Terlalu Banyak Permintaan' : 'Pengiriman Gagal'}</strong><br>${errorMsg}`);
           }
         } catch (err) {
@@ -1392,7 +1416,7 @@ Mohon bantuannya untuk dapat diproses penggantian email akun saya. Terima kasih.
           } else {
             const errorMsg = response.status === 429
               ? "Permintaan pengiriman OTP terlalu sering. Silakan tunggu beberapa saat."
-              : (result.status || result.message || "Gagal mengirim ulang OTP.");
+              : escapeHTML(result.status || result.message || "Gagal mengirim ulang OTP.");
             showNotice(ceConfirmNotice, errorMsg);
             resetCeCooldown();
           }
@@ -1459,7 +1483,7 @@ Mohon bantuannya untuk dapat diproses penggantian email akun saya. Terima kasih.
             const isRateLimit = response.status === 429;
             const errorMsg = isRateLimit
               ? "Terlalu banyak percobaan konfirmasi OTP. Silakan tunggu beberapa menit."
-              : (result.status || result.message || "Verifikasi kode OTP gagal.");
+              : escapeHTML(result.status || result.message || "Verifikasi kode OTP gagal.");
             
             if (result.status && (result.status.includes("habis") || result.status.includes("kedaluwarsa") || result.status.includes("tidak valid"))) {
               showNotice(ceConfirmNotice, `
@@ -1505,8 +1529,53 @@ Mohon bantuannya untuk dapat diproses penggantian email akun saya. Terima kasih.
     // 7. Navigation: Open DTI Help & Back
     if (ceOpenDtiHelpBtn) {
       ceOpenDtiHelpBtn.addEventListener("click", function () {
+        const npmVal = (ceNpm ? ceNpm.value.trim() : "") || activeNpm || "";
+        prepareDtiMailto(npmVal, ceCurrentMaskedEmail || lastFoundMaskedEmail || "-");
         ceStep1Box.style.display = "none";
         ceDtiHelpPanel.style.display = "block";
+      });
+    }
+
+    function copyTextToClipboard(text) {
+      if (navigator.clipboard && window.isSecureContext) {
+        return navigator.clipboard.writeText(text);
+      }
+      return new Promise((resolve, reject) => {
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        textArea.style.position = "fixed";
+        textArea.style.left = "-999999px";
+        textArea.style.top = "-999999px";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        try {
+          const successful = document.execCommand("copy");
+          document.body.removeChild(textArea);
+          if (successful) resolve();
+          else reject(new Error("Gagal menyalin."));
+        } catch (err) {
+          document.body.removeChild(textArea);
+          reject(err);
+        }
+      });
+    }
+
+    const ceCopyFormatBtn = document.getElementById("ceCopyFormatBtn");
+    const ceCopyFormatBtnText = document.getElementById("ceCopyFormatBtnText");
+    if (ceCopyFormatBtn) {
+      ceCopyFormatBtn.addEventListener("click", function () {
+        const previewBox = document.getElementById("ceEmailFormatPreview");
+        if (previewBox && previewBox.textContent) {
+          copyTextToClipboard(previewBox.textContent).then(() => {
+            if (ceCopyFormatBtnText) ceCopyFormatBtnText.textContent = "✓ Tersalin!";
+            setTimeout(() => {
+              if (ceCopyFormatBtnText) ceCopyFormatBtnText.textContent = "Salin Format Teks";
+            }, 2000);
+          }).catch(() => {
+            alert("Gagal menyalin otomatis. Silakan blok dan salin teks format secara manual.");
+          });
+        }
       });
     }
 
